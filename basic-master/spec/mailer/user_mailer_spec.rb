@@ -1,0 +1,24 @@
+require "rails_helper"
+
+RSpec.describe UserMailer, type: :mailer do
+  describe 'instructions' do
+    let(:user) { mock_model User, name: 'Kris', email: 'kris@email.com' }
+    let(:mail) { described_class.instructions(user).deliver_now }
+
+    it 'renders the subject' do
+      expect(mail.subject).to eq('Kris Pomo is now following you!')
+    end
+
+    it 'renders the receiver email' do
+      expect(mail.to).to eq([user.email])
+    end
+
+    it 'renders the sender email' do
+      expect(mail.from).to eq(['example@example.com'])
+    end
+
+    it 'assigns @name' do
+      expect(mail.body.encoded).to match(user.name)
+    end
+  end
+end

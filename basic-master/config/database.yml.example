@@ -1,0 +1,23 @@
+default: &default
+  adapter: postgresql
+  encoding: unicode
+
+  username: <%= ENV['DATABASE_USERNAME'] %>
+  password: <%= ENV['DATABASE_PASSWORD'] %>
+  pool: 5
+  host: localhost
+
+development:
+  <<: *default
+  database: basic_development
+
+
+test: &test
+  <<: *default
+  database: basic_test
+
+production:
+  <<: *default
+  pool: <%= ENV["DB_POOL"] || ENV['MAX_THREADS'] || 5 %>
+
+cucumber:

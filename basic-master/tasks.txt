@@ -1,0 +1,35 @@
+------------ Probni zadatak ------------
+
+1.  Logovanje i registracija				| X
+2.  User dashboard (feed) i korisnicki profili *        | X
+3.  Follow/Unfollow                                     | X
+4.  Pravljenje microposta(tweets)                       | X
+5.  Tweets i Follow counter                             | X
+6.  Testovi modela                                      | X
+
+* User dashboard (feed)
+  Na User dashboard su prikazani svi tweetovi i polje za kreiranje novih tweetova           | X
+  Na korisnickom profilu su prikazani samo njegovi tweetovi                                 | X
+  Na profilu drugog korisnika e nalazi opcija za follow i tweetovi samo tog korisnika       | X
+
+------------ Dodatak 1 ------------
+
+1. Mention (hash tag korisnik)                          | X
+2. Mention counter                                      |
+
+Greske:
+    - koriscen je @ umeso #
+    - Mention counter treba doraditi (bug kod prebrojavanja)
+
+------------ Dodatak 2 ------------
+
+1. Posle svakog novog follow-a, poslati mail user       | X
+2. Korisnik dobija email sa informacijom ko ga prati    | X
+3. Testovi                                              | X
+
+Greske:
+    - Nakon follow-a treba refreshovati stranicu, ovaj problem sa create.js.erb 
+	se javio nakon sto je user_mailer bio dodat u RelationshipsController.
+    - \config\environments\development.rb nije dobro podesen
+
+
