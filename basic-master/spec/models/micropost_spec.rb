@@ -1,9 +1,9 @@
-require "rails_helper"
+require "spec_helper"
 
 RSpec.describe Micropost, type: :model do
   let(:user) { FactoryGirl.create(:user) }
 
-  subject(:micropost) { user.tweets.build(content: "Example!") }
+  subject(:micropost) { user.microposts.build(content: "Example!") }
 
   it { should respond_to(:content) }
   it { should respond_to(:user_id) }

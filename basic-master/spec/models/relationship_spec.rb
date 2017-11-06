@@ -1,4 +1,4 @@
-require "rails_helper"
+require 'spec_helper'
 
 RSpec.describe Relationship, type: :model do
   let(:follower) { FactoryGirl.create(:user) }
@@ -6,6 +6,11 @@ RSpec.describe Relationship, type: :model do
   subject(:relationship) { follower.relationships.build(followed_id: followed.id) }
 
   it { should be_valid }
+
+  it 'sends an email' do
+    expect { subject.send_email }
+        .to change { ActionMailer::Base.deliveries.count }.by(1)
+  end
 
   describe "follower methods" do
     it { should respond_to(:follower) }

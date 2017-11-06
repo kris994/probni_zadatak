@@ -16,12 +16,9 @@ class User < ActiveRecord::Base
   validates :last_name, presence: true, length: { maximum: 50 }
   validates :birth_year,  presence: true,
                           length: { maximum: 4 },
-                          :numericality => {:only_integer => true},
-                          :numericality => {:less_than_or_equal_to => 2017},
-                          :numericality => {:greater_than_or_equal_to => 1900}
+                          :numericality => {:only_integer => true, :greater_than_or_equal_to => 1900, :less_than_or_equal_to => 2017}
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-]+(\.[a-z]+)*\.[a-z]+\z/i
   validates :email, presence: true,
-                    length: { maximum: 255 },
                     format: { with: VALID_EMAIL_REGEX },
                     uniqueness: { case_sensitive: false }
   has_secure_password
@@ -29,7 +26,6 @@ class User < ActiveRecord::Base
 
   def feed
     Micropost.from_users_followed_by(self)
-    Micropost.recent_content
   end
 
   def following?(other_user)
@@ -51,6 +47,7 @@ class User < ActiveRecord::Base
   def User.new_remember_token
     SecureRandom.urlsafe_base64
   end
+
 
   private
 

@@ -1,6 +1,11 @@
 class Micropost < ActiveRecord::Base
   belongs_to :user
-  default_scope -> { order('created_at DESC') }
+
+  default_scope -> {
+    where('created_at >= ?', 3.day.ago.utc)}
+  default_scope -> {
+    order('created_at DESC') }
+
 
   validates :content, presence: true, length: { maximum: 160 }
   validates :user_id, presence: true
@@ -13,11 +18,6 @@ class Micropost < ActiveRecord::Base
                          WHERE follower_id = :user_id"
     where("user_id IN (#{followed_user_ids}) OR user_id = :user_id",
           user_id: user.id)
-  end
-
-  # do not show micropost content older than 3 days
-  def self.recent_content
-    Micropost.where("created_at >= ?", 3.day.ago.utc)
   end
 
   # returns mentions located in micropost

@@ -54,8 +54,11 @@ group :development, :test do
 end
 
 group :test do
+  gem 'rspec-activemodel-mocks'
+  gem 'spork'
   gem 'rspec-rails'
   gem 'shoulda-matchers'
+  gem 'factory_bot'
   gem 'factory_girl_rails'
   gem 'simplecov', :require => false
   gem 'database_cleaner'

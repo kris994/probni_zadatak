@@ -1,12 +1,14 @@
-require "rails_helper"
+require "spec_helper"
 
 RSpec.describe UserMailer, type: :mailer do
-  describe 'instructions' do
+
+  describe 'new_follower_notification' do
     let(:user) { mock_model User, name: 'Kris', email: 'kris@email.com' }
-    let(:mail) { described_class.instructions(user).deliver_now }
+    let(:follower) { mock_model Relationship, name: 'Tina', last_name: 'Tinic' }
+    let(:mail) { described_class.new_follower_notification(user, follower).deliver_now }
 
     it 'renders the subject' do
-      expect(mail.subject).to eq('Kris Pomo is now following you!')
+      expect(mail.subject).to eq('Tina Tinic is now following you!')
     end
 
     it 'renders the receiver email' do
@@ -14,11 +16,8 @@ RSpec.describe UserMailer, type: :mailer do
     end
 
     it 'renders the sender email' do
-      expect(mail.from).to eq(['example@example.com'])
+      expect(mail.from).to eq('My Twitter <example@example.com')
     end
 
-    it 'assigns @name' do
-      expect(mail.body.encoded).to match(user.name)
-    end
   end
 end
