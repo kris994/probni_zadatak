@@ -16,14 +16,6 @@ ActiveRecord::Schema.define(version: 20171028145311) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "mentions", force: :cascade do |t|
-    t.integer  "user_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  add_index "mentions", ["user_id", "created_at"], name: "index_mentions_on_user_id_and_created_at", using: :btree
-
   create_table "microposts", force: :cascade do |t|
     t.string   "content"
     t.integer  "user_id"

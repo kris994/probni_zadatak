@@ -11,8 +11,8 @@
 // about supported directives.
 //
 //= require jquery
-//= require jquery.atwho
 //= require jquery_ujs
 //= require twitter/bootstrap
 //= require turbolinks
+//= require jquery.atwho
 //= require_tree .

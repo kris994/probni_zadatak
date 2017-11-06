@@ -10,7 +10,6 @@ class Micropost < ActiveRecord::Base
   validates :content, presence: true, length: { maximum: 160 }
   validates :user_id, presence: true
 
-  after_create :add_mentions
 
   # shows microposts in your feed from the users being followed by the given user.
   def self.from_users_followed_by(user)
@@ -20,8 +19,15 @@ class Micropost < ActiveRecord::Base
           user_id: user.id)
   end
 
-  # returns mentions located in micropost
-  def add_mentions
-    Mention.create_from_text(self)
+  def mentions
+    @mentions ||= begin
+      regex = /@([\w]+)/
+      content.scan(regex).flatten
+    end
   end
+
+  def mentioned_users
+    @mentioned_users ||= User.where(name: mentions)
+  end
+
 end

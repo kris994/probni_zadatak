@@ -8,4 +8,9 @@
                   data: { confirm: "You sure?" },
                   title: micropost.content %>
   <% end %>
+
 </li>
+<p>
+  <strong>Mentions:</strong>
+  <%= micropost.mentioned_users.to_a %>
+</p>

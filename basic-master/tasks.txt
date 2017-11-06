@@ -25,7 +25,7 @@ Greske:
 
 1. Posle svakog novog follow-a, poslati mail user       | X
 2. Korisnik dobija email sa informacijom ko ga prati    | X
-3. Testovi dodati                                       | X
+3. Testovi                                              | X
 
 Greske:
     - Nakon follow-a treba refreshovati stranicu, ovaj problem sa create.js.erb 

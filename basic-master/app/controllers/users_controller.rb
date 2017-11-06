@@ -66,12 +66,6 @@ class UsersController < ApplicationController
     render :show_follow
   end
 
-  #def mentions
-  # respond_to do |format|
-  #  format.json { render :json => Mention.all(params[:q]) }
-  # end
-  #end
-
   # this methods are private to make sure it can't be called outside its intended context
   private
 
